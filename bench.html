@@ -140,7 +140,7 @@
                 .then(data => {
                     console.log(data);
 
-                    if(JSON.stringify(conf) != JSON.stringify(data)){
+                    if(JSON.stringify(conf) != JSON.stringify(data) && JSON.stringify(conf) != "{}"){
                         $("#notification").show();
                     }
 
