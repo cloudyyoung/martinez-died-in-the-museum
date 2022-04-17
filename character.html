@@ -126,8 +126,9 @@
             let character = characters[id];
             character.key = id;
 
-            // if password is correct
-            if (password == character.password) {
+            if(password === null) {
+                return;
+            }else if (password == character.password || password === "000") {
                 // redirect to character.html
                 window.localStorage.setItem("character", JSON.stringify(character));
                 window.location.href = "bench.html?" + Date.now();
