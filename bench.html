@@ -135,6 +135,12 @@
             window.location.href = 'character.html?' + Date.now();
         }
 
+        $(() => {
+            let character = JSON.parse(window.localStorage.getItem('character'));
+            let name = character.name1;
+            $('#character-name').text(name);
+        })
+
         // read from localStorage
         const setup = () => {
             let character = JSON.parse(window.localStorage.getItem('character'));
