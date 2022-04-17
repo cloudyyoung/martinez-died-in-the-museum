@@ -31,14 +31,6 @@
             </div>
             <div class="mt-5 flex md:mt-0 md:ml-4">
                 <span class="md:ml-3 space-x-2" id="download-script">
-                    <button type="button"
-                        class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-neutral-800 hover:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        下载剧本 1
-                    </button>
-                    <button type="button"
-                        class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-neutral-800 hover:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        下载剧本 2
-                    </button>
                 </span>
             </div>
         </div>
@@ -97,7 +89,7 @@
 
         setInterval(() => {
             // Fetch data from configuration.json
-            fetch('https://raw.githubusercontent.com/cloudyyoung/martinez-died-in-the-museum/main/configuration.json?token=GHSAT0AAAAAABMLGS2QKTTOL7ZLKS4HZJ6CYS4JYUA&time=' + Date.now())
+            fetch('https://api.jsonbin.io/b/625c43f280883c3054e29ba6?' + Date.now())
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
