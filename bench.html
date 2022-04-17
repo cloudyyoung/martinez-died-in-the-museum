@@ -87,9 +87,13 @@
     <script>
         let conf = {};
 
+        // https://www.npoint.io/docs/2d76c239b0399e1f8988
         setInterval(() => {
             // Fetch data from configuration.json
-            fetch('https://api.jsonbin.io/b/625c43f280883c3054e29ba6?' + Date.now())
+            fetch('https://api.npoint.io/2d76c239b0399e1f8988?' + Date.now(),
+                {
+                    cache: "no-store",
+                })
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
@@ -101,7 +105,7 @@
     </script>
 
     <script>
-        if(!window.localStorage.getItem('character')){
+        if (!window.localStorage.getItem('character')) {
             window.location.href = 'character.html?' + Date.now();
         }
 
@@ -113,9 +117,9 @@
             let download_script_container = $("#download-script");
             download_script_container.empty();
 
-            if(conf.stage >= 1){
+            if (conf.stage >= 1) {
                 name += character.name1;
-                
+
                 const download_link = character.script1;
                 console.log(download_link);
                 download_script_container.append(`
@@ -126,7 +130,7 @@
                     </button>
                 `);
             }
-            
+
             if (conf.stage >= 2) {
                 name += " / " + character.name2;
 
@@ -139,11 +143,11 @@
                     </button>
                 `);
             }
-            
+
             $("#character-name").text(name);
 
 
-            $(".script-download").click(function(){
+            $(".script-download").click(function () {
                 let download_link = $(this).attr("download-link");
                 window.open("script/" + download_link);
             });
