@@ -184,7 +184,7 @@
                 const stack = stacks[stage]; // amount of cards in the stack
                 console.log("stack", stage + ":", stack);
 
-                for (let t = 1; t < stack; t ++){
+                for (let t = 1; t <= stack; t ++){
                     $("#images").append(`
                         <li><img src="card/card/stage-${stage}/card-${t}.jpg" alt="Stage ${stage} - Card ${t}"></li>
                     `);
