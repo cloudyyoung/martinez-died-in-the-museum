@@ -43,8 +43,8 @@
     </div>
 
     <div class="text-center" id="images-empty">
-        <svg class="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="none"
-            viewBox="0 0 48 48" aria-hidden="true">
+        <svg class="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" stroke="currentColor"
+            fill="none" viewBox="0 0 48 48" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M8 14v20c0 4.418 7.163 8 16 8 1.381 0 2.721-.087 4-.252M8 14c0 4.418 7.163 8 16 8s16-3.582 16-8M8 14c0-4.418 7.163-8 16-8s16 3.582 16 8m0 0v14m0-4c0 4.418-7.163 8-16 8S8 28.418 8 24m32 10v6m0 0v6m0-6h6m-6 0h-6" />
         </svg>
@@ -71,8 +71,7 @@
                         </p>
                     </div>
                     <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-2">
-                        <button type="button"
-                            id="notification-dismiss"
+                        <button type="button" id="notification-dismiss"
                             class="-mr-1 flex p-2 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white">
                             <span class="sr-only">Dismiss</span>
                             <!-- Heroicon name: outline/x -->
@@ -112,8 +111,8 @@
                 .then(data => {
                     console.log(data);
 
-                    if(JSON.stringify(conf) != JSON.stringify(data)){
-                        if(JSON.stringify(conf) != "{}"){
+                    if (JSON.stringify(conf) != JSON.stringify(data)) {
+                        if (JSON.stringify(conf) != "{}") {
                             $("#notification").show();
                         }
 
@@ -195,13 +194,14 @@
             };
 
             // for each unlocked stack
-            for(let stage of unlocked_stages){
+            for (let stage of unlocked_stages) {
                 const stack = stacks[stage]; // amount of cards in the stack
                 console.log("stack", stage + ":", stack);
 
                 let html = `<ul id="cards-${stage}" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5 items-center content-center">`;
+                html += `<p class="font-bold mb-2 font-md">阶段 ${stage}</p>`;
 
-                for (let t = 1; t <= stack; t ++){
+                for (let t = 1; t <= stack; t++) {
                     html += `<li><img src="card/card/stage-${stage}/card-${t}.jpg" alt="Stage ${stage} - Card ${t}"></li>`;
                 }
 
@@ -211,10 +211,10 @@
                 $(`#cards-${stage}`).viewer();
             }
 
-            if(unlocked_stages.length == 0){
+            if (unlocked_stages.length == 0) {
                 $("#images").hide();
                 $("#images-empty").show();
-            }else{
+            } else {
                 $("#images").show();
                 $("#images-empty").hide();
             }
