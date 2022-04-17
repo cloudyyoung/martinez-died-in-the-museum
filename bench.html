@@ -26,11 +26,11 @@
         <!-- This example requires Tailwind CSS v2.0+ -->
         <div class="md:flex md:items-center md:justify-between container mx-auto">
             <div class="flex-1 min-w-0">
-                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">贾斯汀</h2>
+                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate" id="character-name"></h2>
 
             </div>
             <div class="mt-5 flex md:mt-0 md:ml-4">
-                <span class="md:ml-3 space-x-2">
+                <span class="md:ml-3 space-x-2" id="download-script">
                     <button type="button"
                         class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-neutral-800 hover:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         下载剧本 1
@@ -93,6 +93,69 @@
     </script>
 
     <script>
+        let conf = {};
+
+        // Fetch data from configuration.json
+        fetch('https://raw.githubusercontent.com/cloudyyoung/martinez-died-in-the-museum/main/configuration.json?token=GHSAT0AAAAAABMLGS2QKTTOL7ZLKS4HZJ6CYS4JYUA')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            conf = data;
+
+            setup();
+        })
+    </script>
+
+    <script>
+        if(!window.localStorage.getItem('character')){
+            window.location.href = 'character.html?' + Date.now();
+        }
+
+        // read from localStorage
+
+        const setup = () => {
+            let character = JSON.parse(window.localStorage.getItem('character'));
+
+            let name = "";
+            let download_script_container = $("#download-script");
+            download_script_container.empty();
+
+            if(conf.stage == 1){
+                name += character.name1;
+                
+                const download_link = character.script1;
+                console.log(download_link);
+                download_script_container.append(`
+                    <button type="button"
+                        class="script-download inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-neutral-800 hover:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        download-link="${download_link}">
+                        剧本 1
+                    </button>
+                `);
+            }
+            
+            if (conf.stage == 2) {
+                name += " / " + character.name2;
+
+                const download_link = character.script2;
+                download_script_container.append(`
+                    <button type="button"
+                        class="script-download inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-neutral-800 hover:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        download-link="${download_link}">
+                        剧本 2
+                    </button>
+                `);
+            }
+            
+            $("#character-name").text(name);
+
+
+            $(".script-download").click(function(){
+                let download_link = $(this).attr("download-link");
+                window.open("script/" + download_link);
+            });
+        };
+
 
     </script>
 </body>
