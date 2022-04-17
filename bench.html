@@ -198,7 +198,8 @@
                 const stack = stacks[stage]; // amount of cards in the stack
                 console.log("stack", stage + ":", stack);
 
-                let html = `<ul id="cards-${stage}" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5 items-center content-center">`;
+                let html = "";
+                html += `<ul id="cards-${stage}" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5 items-center content-center">`;
                 html += `<p class="font-bold mb-2 font-md">阶段 ${stage}</p>`;
 
                 for (let t = 1; t <= stack; t++) {
