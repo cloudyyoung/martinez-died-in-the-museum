@@ -95,15 +95,17 @@
     <script>
         let conf = {};
 
-        // Fetch data from configuration.json
-        fetch('https://raw.githubusercontent.com/cloudyyoung/martinez-died-in-the-museum/main/configuration.json?token=GHSAT0AAAAAABMLGS2QKTTOL7ZLKS4HZJ6CYS4JYUA')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            conf = data;
+        setInterval(() => {
+            // Fetch data from configuration.json
+            fetch('https://raw.githubusercontent.com/cloudyyoung/martinez-died-in-the-museum/main/configuration.json?token=GHSAT0AAAAAABMLGS2QKTTOL7ZLKS4HZJ6CYS4JYUA')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    conf = data;
 
-            setup();
-        })
+                    setup();
+                })
+        }, 1000);
     </script>
 
     <script>
@@ -112,7 +114,6 @@
         }
 
         // read from localStorage
-
         const setup = () => {
             let character = JSON.parse(window.localStorage.getItem('character'));
 
